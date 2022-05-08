@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src = "script.js"></script>
+</head>
+<body ng-app = "myApp" ng-controller = "myController">
+    <div ng-show = "change_Main_Add" ng-hide = "change_Main_Edit">
+        <input type="text" placeholder = "Ho ten" ng-model = "search_HoTen.hoTen">
+        <input type="text" placeholder = "Tuoi" ng-model = "search_Tuoi.tuoi">
+        <input type="text" placeholder = "Lop" ng-model = "search_Lop.lop">
+    
+        <button ng-click = "search()">Tim kiem</button>
+        <button ng-click = "add()">Them hoc sinh</button>
+
+        <table border = "1" width = "700px">
+            <tr>
+                <td>#</td>
+                <td>Ho va ten</td>
+                <td>Tuoi</td>
+                <td>Lop</td>
+                <td>Thao tac</td>
+            </tr>
+            <tr ng-repeat = "hs in hocSinh | filter: search_HoTen | filter: search_Lop |filter: search_Tuoi">
+                <td>{{$index + 1}}</td>
+                <td width = 40%>{{hs.hoTen}}</td>
+                <td>{{hs.tuoi}}</td>
+                <td>{{hs.lop}}</td>
+                <td align="center" width="100px">
+                    <button ng-click = "edit(hs)">Sua</button>
+                    <button ng-click = "delete()">Xoa</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-hide = "change_Main_Add" ng-include = "'add.html'">
+    </div>
+    <div ng-show = "change_Main_Edit" ng-include = "'edit.html'">
+    </div>
+</body>
+</html>
