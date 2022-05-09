@@ -7,11 +7,14 @@
 </head>
 <body ng-app = "myApp" ng-controller = "myController">
     <div ng-show = "change_Main_Add" ng-hide = "change_Main_Edit">
-        <input type="text" placeholder = "Ho ten" ng-model = "search_HoTen.hoTen">
+        <!-- <input type="text" placeholder = "Ho ten" ng-model = "search_HoTen.hoTen">
         <input type="text" placeholder = "Tuoi" ng-model = "search_Tuoi.tuoi">
-        <input type="text" placeholder = "Lop" ng-model = "search_Lop.lop">
-    
-        <button ng-click = "search()">Tim kiem</button>
+        <input type="text" placeholder = "Lop" ng-model = "search_Lop.lop"> -->
+        
+        <input type="text" placeholder = "Ho ten" ng-model = "userInput.hoTen">
+        <input type="number" placeholder = "Tuoi" ng-model = "userInput.tuoi">
+        <input type="text" placeholder = "Lop" ng-model = "userInput.lop">
+        <button type="search" ng-click = "applySearch()">Tim kiem</button>
         <button ng-click = "add()">Them hoc sinh</button>
 
         <table border = "1" width = "700px">
@@ -22,7 +25,7 @@
                 <td>Lop</td>
                 <td>Thao tac</td>
             </tr>
-            <tr ng-repeat = "hs in hocSinh | filter: search_HoTen | filter: search_Lop |filter: search_Tuoi">
+            <tr ng-repeat = "hs in hocSinh | filter : search">
                 <td>{{$index + 1}}</td>
                 <td width = 40%>{{hs.hoTen}}</td>
                 <td>{{hs.tuoi}}</td>
